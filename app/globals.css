@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900;
+    /* Prevent pull-to-refresh on iPad */
+    overscroll-behavior: none;
+    /* Full height for mobile */
+    min-height: 100dvh;
+  }
+}
+
+@layer components {
+  /* Large touch targets for children (min 44px per WCAG) */
+  .touch-target {
+    @apply min-w-[48px] min-h-[48px] flex items-center justify-center;
+  }
+
+  /* Safe area for notched devices */
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+}
+
+/* iPad landscape optimizations */
+@media (min-width: 1024px) and (orientation: landscape) {
+  .lesson-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+}
+
+/* Smooth scrolling for exercise transitions */
+.exercise-wrapper {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Star animation for rewards */
+@keyframes twinkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.star-twinkle {
+  animation: twinkle 2s ease-in-out infinite;
+}
