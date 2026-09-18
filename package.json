@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3000",
+    "dev": "next dev -H 0.0.0.0 -p 3000",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "npx --yes serve out -l tcp://0.0.0.0:3000",
+    "lint": "next lint",
+    "audio": "python3 scripts/generate-audio.py"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

@@ -1,11 +1,15 @@
 "use client";
 
+import { useEffect } from "react";
 import type { HootyMood } from "@/types";
+import { speechService } from "@/lib/speech";
 
 interface HootyAvatarProps {
   mood: HootyMood;
   message?: string;
   size?: "sm" | "md" | "lg";
+  /** Speak the bubble. Defaults on for teaching/welcome so kids hear natural Chinese. */
+  autoSpeak?: boolean;
 }
 
 const moodEmojis: Record<HootyMood, string> = {
@@ -38,7 +42,20 @@ const sizeClasses: Record<string, string> = {
   lg: "text-7xl p-4",
 };
 
-export default function HootyAvatar({ mood, message, size = "md" }: HootyAvatarProps) {
+export default function HootyAvatar({
+  mood,
+  message,
+  size = "md",
+  autoSpeak,
+}: HootyAvatarProps) {
+  const shouldSpeak =
+    autoSpeak ?? (mood === "teaching" || mood === "welcome");
+
+  useEffect(() => {
+    if (!shouldSpeak || !message) return;
+    void speechService.speak(message, { lang: "auto" });
+  }, [message, shouldSpeak, mood]);
+
   return (
     <div className="flex flex-col items-center gap-2">
       <div
