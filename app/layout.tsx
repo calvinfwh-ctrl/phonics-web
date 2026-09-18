@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import ClientEffects from "@/components/ClientEffects";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -28,6 +29,7 @@ export default function RootLayout({
   return (
     <html lang="zh-CN">
       <body className="min-h-dvh">
+        <ClientEffects />
         <main className="pb-20">{children}</main>
       </body>
     </html>
