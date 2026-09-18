@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "PhonicsTeacher - 儿童自然拼读",
   description: "3-8岁儿童英语自然拼读 AI 私教，用规则学发音",
   manifest: "/manifest.json",
+  icons: {
+    icon: "/favicon.svg",
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
