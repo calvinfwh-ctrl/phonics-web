@@ -1,16 +1,23 @@
 # PhonicsTeacher
 
-3–8 岁儿童英语自然拼读 Web App。数据存在浏览器 IndexedDB 里，打开网站即可用，不依赖家里的局域网。
+3–8 岁儿童英语自然拼读 Web App。学习记录在手机浏览器里，不依赖家里的局域网。
 
-## 远程使用（非局域网）
+## 在中国大陆打开（不要用 GitHub）
 
-合并到 `main` 并开启 GitHub Pages 后，用手机流量或任何网络打开：
+`github.com` 和 `github.io` 在中国大陆打不开，而且这个仓库是私有的，GitHub Pages 部署会 404。
 
-**https://calvinfwh-ctrl.github.io/phonics-web/**
+请用国内 CDN 打开这个地址（不要打开 `index.html`，那个链接只会显示源代码）：
 
-第一次请用 Chrome / Edge / Safari 打开（需要 HTTPS，语音才能稳定播放）。浏览器可能会提示“添加到主屏幕”，之后就能当 App 用。
+**https://cdn.jsdmirror.com/gh/calvinfwh-ctrl/phonics-web@web/open.svg**
 
-仓库设置：Settings → Pages → Source 选 **GitHub Actions**。
+打不开时换下面两个备用地址（内容相同）：
+
+- https://jsd.onmicrosoft.cn/gh/calvinfwh-ctrl/phonics-web@web/open.svg
+- https://cdn.jsdmirror.cn/gh/calvinfwh-ctrl/phonics-web@web/open.svg
+
+这些镜像只能读取**公开**仓库。请到 GitHub 仓库 Settings → General → Danger Zone → Change repository visibility，把仓库改成 **Public**。仓库里没有密钥，只是拼读页面和语音文件。
+
+改成公开后，首次打开可能要等一两分钟。用手机 Chrome / Edge / Safari 打开，点一下页面后再听发音。
 
 ## 本地 / 局域网
 
@@ -19,18 +26,11 @@ npm install
 npm run dev
 ```
 
-开发服务器会监听 `0.0.0.0:3000`，同一 Wi-Fi 下可用电脑 IP 访问。要给公网用，请走上面的 GitHub Pages，不要做端口映射。
-
-```bash
-npm run build
-npm start
-```
+开发服务器监听 `0.0.0.0:3000`，同一 Wi-Fi 下可用电脑 IP 访问。
 
 ## 语音
 
-英语单词和字母音使用 Microsoft 神经语音（Aria）预生成，中文讲解用晓晓；在没有预生成音频时回退到系统语音，并按中/英分段选声。
-
-重新生成音频（需要 Python 包 `edge-tts`）：
+英语单词和字母音使用 Microsoft 神经语音（Aria）预生成，中文讲解用晓晓。重新生成：
 
 ```bash
 pip install edge-tts

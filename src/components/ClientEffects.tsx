@@ -20,7 +20,10 @@ export default function ClientEffects() {
     window.addEventListener("pointerdown", unlock, { once: true });
     window.addEventListener("keydown", unlock, { once: true });
 
-    if ("serviceWorker" in navigator) {
+    // CDN mirrors (jsDelivr / 国内镜像) are shared origins. Do not register a
+    // service worker there; audio is loaded directly from the same path.
+    const onSharedCdn = BASE_PATH.startsWith("/gh/");
+    if (!onSharedCdn && "serviceWorker" in navigator) {
       navigator.serviceWorker.register(`${BASE_PATH}/sw.js`).catch(() => {
         /* private mode / unsupported */
       });
