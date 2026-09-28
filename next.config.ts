@@ -6,8 +6,8 @@ import type { NextConfig } from "next";
  * is blocked in mainland China anyway. The static site is pushed to the `web`
  * branch and opened through a jsDelivr mirror that uses a mainland CDN.
  *
- * Same files, different host:
- *   https://cdn.jsdmirror.com/gh/calvinfwh-ctrl/phonics-web@web/index.html
+ * Open open.svg, not index.html. These CDNs serve HTML as plain text.
+ *   https://cdn.jsdmirror.com/gh/calvinfwh-ctrl/phonics-web@web/open.svg
  */
 const cdnBasePath =
   process.env.WEB_CDN === "true" ? "/gh/calvinfwh-ctrl/phonics-web@web" : "";

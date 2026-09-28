@@ -6,14 +6,14 @@
 
 `github.com` 和 `github.io` 在中国大陆打不开，而且这个仓库是私有的，GitHub Pages 部署会 404。
 
-请用国内 CDN 镜像打开（页面文件在 `web` 分支，不经过 GitHub 网页）：
+请用国内 CDN 打开这个地址（不要打开 `index.html`，那个链接只会显示源代码）：
 
-**https://cdn.jsdmirror.com/gh/calvinfwh-ctrl/phonics-web@web/index.html**
+**https://cdn.jsdmirror.com/gh/calvinfwh-ctrl/phonics-web@web/open.svg**
 
 打不开时换下面两个备用地址（内容相同）：
 
-- https://jsd.onmicrosoft.cn/gh/calvinfwh-ctrl/phonics-web@web/index.html
-- https://cdn.jsdmirror.cn/gh/calvinfwh-ctrl/phonics-web@web/index.html
+- https://jsd.onmicrosoft.cn/gh/calvinfwh-ctrl/phonics-web@web/open.svg
+- https://cdn.jsdmirror.cn/gh/calvinfwh-ctrl/phonics-web@web/open.svg
 
 这些镜像只能读取**公开**仓库。请到 GitHub 仓库 Settings → General → Danger Zone → Change repository visibility，把仓库改成 **Public**。仓库里没有密钥，只是拼读页面和语音文件。
 

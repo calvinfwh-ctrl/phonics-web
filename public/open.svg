@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+  <rect width="100%" height="100%" fill="#f8fafc"/>
+  <text x="50%" y="50%" text-anchor="middle" font-size="18" font-family="sans-serif" fill="#64748b">正在打开…</text>
+  <script type="text/javascript"><![CDATA[
+    (async function () {
+      try {
+        var dir = location.pathname.replace(/[^/]*$/, "");
+        var res = await fetch(dir + "index.html", { cache: "no-store" });
+        if (!res.ok) throw new Error("index " + res.status);
+        var html = await res.text();
+        var boot = "<script>try{history.replaceState(null,\"\",\"" + dir + "\");}catch(e){}<\/script>";
+        html = html.replace("<head>", "<head>" + boot);
+        var blob = new Blob([html], { type: "text/html" });
+        location.replace(URL.createObjectURL(blob));
+      } catch (err) {
+        var t = document.querySelector("text");
+        if (t) t.textContent = "打开失败：" + err.message;
+      }
+    })();
+  ]]></script>
+</svg>
