@@ -1,19 +1,26 @@
 import type { NextConfig } from "next";
 
-const isGhPages = process.env.GITHUB_PAGES === "true";
-const repoName = "phonics-web";
-const basePath = isGhPages ? `/${repoName}` : "";
+/**
+ * China-accessible hosting.
+ * The GitHub repo is private, so github.io cannot be published, and github.io
+ * is blocked in mainland China anyway. The static site is pushed to the `web`
+ * branch and opened through a jsDelivr mirror that uses a mainland CDN.
+ *
+ * Same files, different host:
+ *   https://cdn.jsdmirror.com/gh/calvinfwh-ctrl/phonics-web@web/index.html
+ */
+const cdnBasePath =
+  process.env.WEB_CDN === "true" ? "/gh/calvinfwh-ctrl/phonics-web@web" : "";
 
 const nextConfig: NextConfig = {
-  // Static export so the app can be hosted on GitHub Pages (public HTTPS).
   output: "export",
   // Disable strict mode for speech API compatibility
   reactStrictMode: false,
   images: { unoptimized: true },
   trailingSlash: true,
-  basePath: basePath || undefined,
+  basePath: cdnBasePath || undefined,
   env: {
-    NEXT_PUBLIC_BASE_PATH: basePath,
+    NEXT_PUBLIC_BASE_PATH: cdnBasePath,
   },
 };
 
